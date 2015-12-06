@@ -3,28 +3,39 @@ BummTschak = exports ? this
 class BummTschak.Metronome
 
   constructor: (@_bpm) ->
-    @_interval = null
-    @_onStep  = []
-    @_onReset  = []
+    @_interval  = null
+    @_onStep    = []
+    @_onReset   = []
+    @_isRunning = false
 
   setTempo: (@_bpm) ->
     @reset()
 
   stop: ->
+    # clear interval
     clearInterval(@_interval) if @_interval?
     @_interval = null
 
   start: ->
-    @stop()
+    if @_interval? then return
 
+    # calculate interval time
+    time = 60 / @_bpm / 4 * 1000
+
+    # set interval
     @_interval = setInterval(
+      # call every onStep-callback
       => fnc() for fnc in @_onStep
-    , 60 / @_bpm / 4 * 1000)
+    , time)
 
   reset: ->
     restart = @_interval?
+
     @stop()
+
+    # call every onReset-callback
     fnc() for fnc in @_onReset
+
     @start() if restart
 
   onStep: (fnc) ->
