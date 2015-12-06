@@ -1,4 +1,4 @@
-angular.module('drumyApp', [])
+angular.module('BummTschak', [])
 
   .controller('AppController', ->)
 
