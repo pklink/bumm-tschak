@@ -12,6 +12,12 @@ angular.module('BummTschak', [])
       $scope.metronome.setTempo($scope.bpm)
     )
 
+    $scope.play = ->
+      $scope.metronome.start()
+
+    $scope.stop = ->
+      $scope.metronome.stop()
+
   )
 
   .directive('line', ->
@@ -107,18 +113,29 @@ class Sound
 
 class Metronome
 
-  constructor: (bpm) ->
+  constructor: (@_bpm) ->
     @_interval = null
     @_onStep  = []
 
-    @setTempo(bpm)
+  setTempo: (@_bpm) ->
+    @refresh()
 
-  setTempo: (bpm) ->
+  stop: ->
     clearInterval(@_interval) if @_interval?
+    @_interval = null
+
+  start: ->
+    @stop()
 
     @_interval = setInterval(
       => fnc() for fnc in @_onStep
-    , 60 / bpm / 4 * 1000)
+    , 60 / @_bpm / 4 * 1000)
 
   onStep: (fnc) ->
     @_onStep.push(fnc)
+
+  refresh: ->
+    restart = @_interval?
+
+    @stop()
+    @start() if restart

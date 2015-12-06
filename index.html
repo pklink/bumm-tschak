@@ -13,6 +13,8 @@
 
 <div class="control">
     <input type="number" ng-model="bpm">
+    <button type="button" ng-click="play()">Play</button>
+    <button type="button" ng-click="stop()">Stop</button>
 </div>
 
 <line sound-url="sounds/bd/1.wav" metronome="metronome"></line>
