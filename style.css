@@ -4,40 +4,40 @@
     display: flex;
 }
 
-.step {
+.line .step {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.step .button {
+.line .step .button {
     flex: 9;
     height: 90%;
     background-color: #00feff;
 }
 
-.step:nth-child(odd) .button {
+.line .step:nth-child(odd) .button {
     background-color: #0dbdff;
 }
 
 /* SELECTED STEP */
 
-.step.selected .button {
+.line .step.selected .button {
     background-color: #fffe00;
 }
 
-.step:nth-child(odd).selected .button {
+.line .step:nth-child(odd).selected .button {
     background-color: #ffee11;
 }
 
 /* ACTIVE STEP */
 
-.step .light {
+.line .step .light {
     flex: 1;
     background-color: #444444;
 }
 
-.step.active .light {
+.line .step.active .light {
     flex: 1;
     background-color: red;
 }
