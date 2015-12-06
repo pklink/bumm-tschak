@@ -12,7 +12,7 @@
 
 
 <div class="control">
-    <input type="number" ng-model="bpm">
+    <input type="number" min="60" max="330" ng-model="bpm">
     <button type="button" ng-click="play()">Play</button>
     <button type="button" ng-click="stop()">Stop</button>
 </div>
