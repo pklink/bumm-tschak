@@ -41,3 +41,9 @@
     flex: 1;
     background-color: red;
 }
+
+/* CONTROL LINE */
+
+.control {
+    padding-bottom: 1em;
+}
