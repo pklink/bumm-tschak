@@ -118,7 +118,10 @@ class Metronome
     @_onStep  = []
 
   setTempo: (@_bpm) ->
-    @refresh()
+    restart = @_interval?
+
+    @stop()
+    @start() if restart
 
   stop: ->
     clearInterval(@_interval) if @_interval?
@@ -133,9 +136,3 @@ class Metronome
 
   onStep: (fnc) ->
     @_onStep.push(fnc)
-
-  refresh: ->
-    restart = @_interval?
-
-    @stop()
-    @start() if restart
