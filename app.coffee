@@ -13,8 +13,9 @@ angular.module('BummTschak', [])
       scope.model = new Line(new Sound(scope.soundUrl))
 
       $interval(->
-        scope.model.current().isActive = false
-        scope.model.next().play()
+        scope.model.current().off()
+        scope.model.forward()
+        scope.model.current().on()
       , 166)
 
   )
@@ -29,49 +30,64 @@ angular.module('BummTschak', [])
       model: '=ngModel'
 
     link: (scope) ->
-      # toggle selection of step
-      scope.toggle = -> scope.model.isSelected = !scope.model.isSelected
+      scope.toggle = -> scope.model.toggle()
 
   )
 
 
 class Line
 
-  constructor: (@sound) ->
+  constructor: (sound) ->
     @_currentIndex = 0
-    @steps = []
+    @_steps = []
 
     # create 16 steps
     for number in [1..16]
-      @steps.push(new Step(@sound))
+      @_steps.push(new Step(sound))
 
   current: ->
-    @steps[@_currentIndex]
+    @_steps[@_currentIndex]
 
-  get: (number) ->
-    @steps[number-1]
-
-  next: ->
+  forward: ->
     if @_currentIndex == 15 then @_currentIndex = 0
     else @_currentIndex++
-    @current()
+
+  all: ->
+    @_steps
 
 
 class Step
 
-  constructor: (@sound) ->
-    @isActive   = false
-    @isSelected = false
+  constructor: (@_sound) ->
+    @_isOn      = false
+    @_isEnabled = false
 
-  play: ->
-    @isActive = true
-    @sound.play() if @isSelected
+  on: ->
+    @_isOn = true
+    @_sound.play() if @_isEnabled
+
+  off: ->
+    @_isOn = false
+
+  isOn: () ->
+    @_isOn
+
+  enable: ->
+    @_isEnabled = true
+
+  disable: ->
+    @_isEnabled = false
+
+  toggle: ->
+    @_isEnabled = !@_isEnabled
+
+  isEnabled: () ->
+    @_isEnabled
 
 
 class Sound
 
   constructor: (@url) ->
     @_howl = new Howl(urls: [@url])
-
 
   play: -> @_howl.play()

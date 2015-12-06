@@ -1,5 +1,5 @@
 <div class="step" ng-click="toggle()"
-     ng-class="{selected: model.isSelected, active: model.isActive}">
+     ng-class="{enabled: model.isEnabled(), on: model.isOn()}">
     <div class="button"></div>
     <div class="light"></div>
 </div>

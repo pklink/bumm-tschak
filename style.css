@@ -20,24 +20,24 @@
     background-color: #0dbdff;
 }
 
-/* SELECTED STEP */
+/* ENABLED STEP */
 
-.line .step.selected .button {
+.line .step.enabled .button {
     background-color: #fffe00;
 }
 
-.line .step:nth-child(odd).selected .button {
+.line .step:nth-child(odd).enabled .button {
     background-color: #ffee11;
 }
 
-/* ACTIVE STEP */
+/* SEQUENCING */
 
 .line .step .light {
     flex: 1;
     background-color: #444444;
 }
 
-.line .step.active .light {
+.line .step.on .light {
     flex: 1;
     background-color: red;
 }
