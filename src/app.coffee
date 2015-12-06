@@ -1,22 +1,24 @@
 angular.module('BummTschak', [])
 
-  .controller('AppController', ->)
+  .controller('AppController', ($scope) ->
 
-  .directive('line', ($interval) ->
+    $scope.metronome = new Metronome()
+    $scope.metronome.onStep(=>
+      $scope.$digest()
+    )
+
+  )
+
+  .directive('line', ->
 
     templateUrl: '_line.html'
 
     scope:
-      soundUrl:   '@'
+      metronome: '='
+      soundUrl:  '@'
 
     link: (scope) ->
-      scope.model = new Line(new Sound(scope.soundUrl))
-
-      $interval(->
-        scope.model.current().off()
-        scope.model.forward()
-        scope.model.current().on()
-      , 166)
+      scope.model = new Line(scope.metronome, new Sound(scope.soundUrl))
 
   )
 
@@ -37,13 +39,18 @@ angular.module('BummTschak', [])
 
 class Line
 
-  constructor: (sound) ->
+  constructor: (@_metronome, sound) ->
     @_currentIndex = 0
     @_steps = []
 
-    # create 16 steps
     for number in [1..16]
       @_steps.push(new Step(sound))
+
+    @_metronome.onStep(=>
+      @current().off()
+      @forward()
+      @current().on()
+    )
 
   current: ->
     @_steps[@_currentIndex]
@@ -91,3 +98,17 @@ class Sound
     @_howl = new Howl(urls: [@url])
 
   play: -> @_howl.play()
+
+
+class Metronome
+
+  constructor: ->
+    @_onStep = []
+
+    setInterval(
+      => fnc() for fnc in @_onStep
+    , 166)
+
+
+  onStep: (fnc) ->
+    @_onStep.push(fnc)
