@@ -70,6 +70,11 @@ class Line
       @current().on()
     )
 
+    @_metronome.onReset(=>
+      step.off() for step in @_steps
+      @_currentIndex = 0
+    )
+
   current: ->
     @_steps[@_currentIndex]
 
@@ -81,6 +86,7 @@ class Line
     @_steps
 
   setLength: (@_length) ->
+    @_metronome.reset()
 
 
 class Step
@@ -125,12 +131,10 @@ class Metronome
   constructor: (@_bpm) ->
     @_interval = null
     @_onStep  = []
+    @_onReset  = []
 
   setTempo: (@_bpm) ->
-    restart = @_interval?
-
-    @stop()
-    @start() if restart
+    @reset()
 
   stop: ->
     clearInterval(@_interval) if @_interval?
@@ -143,5 +147,14 @@ class Metronome
       => fnc() for fnc in @_onStep
     , 60 / @_bpm / 4 * 1000)
 
+  reset: ->
+    restart = @_interval?
+    @stop()
+    fnc() for fnc in @_onReset
+    @start() if restart
+
   onStep: (fnc) ->
     @_onStep.push(fnc)
+
+  onReset: (fnc) ->
+    @_onReset.push(fnc)
