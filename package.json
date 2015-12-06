@@ -1,0 +1,14 @@
+{
+  "name": "Bumm Tschak",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {},
+  "author": "Pierre Klink <dev@klink.xyz>",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "angular": "^1.4.8",
+    "howler": "^1.1.28"
+  }
+}

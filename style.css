@@ -1,0 +1,43 @@
+.line {
+    height: 40px;
+    width: 640px;
+    display: flex;
+}
+
+.step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.step .button {
+    flex: 9;
+    height: 90%;
+    background-color: #00feff;
+}
+
+.step:nth-child(odd) .button {
+    background-color: #0dbdff;
+}
+
+/* SELECTED STEP */
+
+.step.selected .button {
+    background-color: #fffe00;
+}
+
+.step:nth-child(odd).selected .button {
+    background-color: #ffee11;
+}
+
+/* ACTIVE STEP */
+
+.step .light {
+    flex: 1;
+    background-color: #444444;
+}
+
+.step.active .light {
+    flex: 1;
+    background-color: red;
+}
