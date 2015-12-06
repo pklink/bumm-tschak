@@ -1,7 +1,15 @@
 .line {
     height: 40px;
-    width: 640px;
+    width: 680px;
     display: flex;
+}
+
+.line .length {
+    flex: 1;
+}
+
+.line .length input {
+    width: 100%;
 }
 
 .line .step {

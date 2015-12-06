@@ -27,9 +27,15 @@ angular.module('BummTschak', [])
     scope:
       metronome: '='
       soundUrl:  '@'
+      length:    '@'
 
     link: (scope) ->
-      scope.model = new Line(scope.metronome, new Sound(scope.soundUrl))
+      scope.length = 16
+      scope.model  = new Line(scope.metronome, new Sound(scope.soundUrl))
+
+      scope.$watch('length', ->
+        scope.model.setLength(scope.length)
+      )
 
   )
 
@@ -51,6 +57,7 @@ angular.module('BummTschak', [])
 class Line
 
   constructor: (@_metronome, sound) ->
+    @_length = 16
     @_currentIndex = 0
     @_steps = []
 
@@ -67,11 +74,13 @@ class Line
     @_steps[@_currentIndex]
 
   forward: ->
-    if @_currentIndex == 15 then @_currentIndex = 0
+    if @_currentIndex == @_length-1 then @_currentIndex = 0
     else @_currentIndex++
 
   all: ->
     @_steps
+
+  setLength: (@_length) ->
 
 
 class Step
