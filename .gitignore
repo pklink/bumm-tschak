@@ -1,4 +1,5 @@
 node_modules/
-*.js
 .idea/
+*.js
+*.js.map
 *.iml
