@@ -15,7 +15,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "angular": "^1.4.8",
-    "howler": "^1.1.28"
+    "angular": "^1.5.0",
+    "howler": "^1.1.29"
   }
 }
