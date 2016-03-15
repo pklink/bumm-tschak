@@ -1,11 +1,13 @@
-BummTschak = exports ? this
+Metronome = require('./metronome.coffee')
+Line      = require('./line.coffee')
+Sound     = require('./sound.coffee')
 
 angular.module('BummTschak', [])
 
   .controller('AppController', ($scope) ->
     $scope.bpm = 90
 
-    $scope.metronome = new BummTschak.Metronome($scope.bpm)
+    $scope.metronome = new Metronome($scope.bpm)
     $scope.metronome.onStep(=>
       $scope.$digest()
     )
@@ -24,7 +26,7 @@ angular.module('BummTschak', [])
 
   .directive('line', ->
 
-    templateUrl: '_line.html'
+    template: require('./views/line.html')
 
     scope:
       metronome: '='
@@ -33,7 +35,7 @@ angular.module('BummTschak', [])
 
     link: (scope) ->
       scope.length = 16
-      scope.model  = new Line(scope.metronome, new BummTschak.Sound(scope.soundUrl))
+      scope.model  = new Line(scope.metronome, new Sound(scope.soundUrl))
 
       scope.$watch('length', ->
         scope.model.setLength(scope.length)
@@ -45,7 +47,7 @@ angular.module('BummTschak', [])
 
     replace: true
 
-    templateUrl: '_step.html'
+    template: require('./views/step.html')
 
     scope:
       model: '=ngModel'

@@ -1,6 +1,4 @@
-BummTschak = exports ? this
-
-class BummTschak.Metronome
+class Metronome
 
   constructor: (@_bpm) ->
     @_interval  = null
@@ -43,3 +41,5 @@ class BummTschak.Metronome
 
   onReset: (fnc) ->
     @_onReset.push(fnc)
+
+module.exports = Metronome

@@ -1,6 +1,4 @@
-BummTschak = exports ? this
-
-class BummTschak.Step
+class Step
 
   constructor: (@_sound) ->
     @_isOn      = false
@@ -27,3 +25,5 @@ class BummTschak.Step
 
   isEnabled: () ->
     @_isEnabled
+
+module.exports = Step

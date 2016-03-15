@@ -1,6 +1,6 @@
-BummTschak = exports ? this
+Step = require('./step.coffee')
 
-class BummTschak.Line
+class Line
 
   constructor: (@_metronome, sound) ->
     @_length = 16
@@ -8,7 +8,7 @@ class BummTschak.Line
     @_steps = []
 
     for number in [1..16]
-      @_steps.push(new BummTschak.Step(sound))
+      @_steps.push(new Step(sound))
 
     @_metronome.onStep(=>
       @current().off()
@@ -33,3 +33,5 @@ class BummTschak.Line
 
   setLength: (@_length) ->
     @_metronome.reset()
+
+module.exports = Line
