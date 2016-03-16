@@ -13,7 +13,7 @@ module.exports = {
                 loader: 'raw'
             },
             {
-                test:   /\.coffe/,
+                test:   /\.coffee/,
                 loader: 'coffee-loader',
                 include: __dirname + '/src',
                 exclude: /(node_modules)/
