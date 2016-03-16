@@ -1,6 +1,6 @@
 {
   "name": "bumm-tschak",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "simple drum sequencer",
   "repository": "https://github.com/pklink/bumm-tschak",
   "main": "src/app.js",
