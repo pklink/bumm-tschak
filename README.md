@@ -6,7 +6,7 @@
 docker run -p 2015:2015 pklink/bumm-tschak
 ```
 
-## Run
+## Run from source
 
 ```sh
 npm install
