@@ -2,6 +2,9 @@
 
 A simple drum sequencer for your browser. Based on [AngularJS](https://angularjs.org/) and [howler.js](https://github.com/goldfire/howler.js/)
 
+Demo is availble on [bummtschak.dev.klink.xyz](http://bummtschak.dev.klink.xyz)
+
+
 ## Docker
 
 ```sh
