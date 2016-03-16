@@ -1,5 +1,11 @@
 # bumm-tschak
 
+## Docker
+
+```sh
+docker run -p 2015:2015 pklink/bumm-tschak
+```
+
 ## Run
 
 ```sh
