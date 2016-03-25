@@ -10,7 +10,8 @@
   "author": "Pierre Klink <dev@klink.xyz>",
   "license": "MIT",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server"
+    "start": "node_modules/.bin/webpack-dev-server",
+    "build": "node_modules/.bin/webpack -p"
   },
   "devDependencies": {
     "coffee-loader": "^0.7.2",

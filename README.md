@@ -24,6 +24,6 @@ app runs on [http://localhost:8080](http://localhost:8080) now
 
 ```sh
 npm install
-node_modules/.bin/webpack
+npm run build
 ```
 
