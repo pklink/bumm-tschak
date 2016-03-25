@@ -15,10 +15,10 @@ docker run -p 2015:2015 pklink/bumm-tschak
 
 ```sh
 npm install
-node_modules/.bin/webpack-dev-server
+npm start
 ```
 
-app runs on http://localhost:8080 now
+app runs on [http://localhost:8080](http://localhost:8080) now
 
 ## Build
 
