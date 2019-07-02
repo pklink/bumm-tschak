@@ -1,4 +1,4 @@
-# bumm-tschak
+# bumm-tschak 🥁
 
 A simple drum sequencer for your browser. Based on [AngularJS](https://angularjs.org/) and [howler.js](https://github.com/goldfire/howler.js/)
 
